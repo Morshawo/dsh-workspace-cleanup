@@ -6,6 +6,10 @@
 
 > ⚠️ 删除不可撤销。点「确认清理」前会先列出这次会删哪些会话，勾选「我已知晓：删除后无法恢复」后才能动手。清理某个工作区只会删掉它的会话，**工作区本身保留**（清空后仍是一个空工作区）。
 
+## 使用它你还需要什么
+这是基于会话删除插件dsh-session-purge开发的工作区会话批量删除的插件，使用前需安装dsh-session-purge插件
+链接：https://github.com/hshh603/dsh-session-purge
+
 ## 它解决什么问题
 
 DSH 的会话持久化层**没有删除接口**：`@deepseek-ai/dsh-session-persistence` 明确写着 *"No deletion or retention API"*。侧栏「⋯」里的「删除对话…」（来自 `dsh-session-purge`）能删**一个**会话，但没人批量维护：
