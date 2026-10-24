@@ -24,7 +24,7 @@ documents *"No deletion or retention API"*. The sidebar's "⋯ → Delete
 conversation…" (from `dsh-session-purge`) removes **one** Session, but nothing
 batch-maintains the rest:
 
-- the **B 站 scroll plugin** spawns a headless Session every round with
+- the **B 站 scroll plugin dsh-bili-scroll** spawns a headless Session every round with
   `cwd = <DSH_HOME>/bili-duty`, which has no Workspace, so it lands under
   "Ungrouped";
 - Sessions whose `cwd` later changed, or that recorded no `cwd`, fall there too;
