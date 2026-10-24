@@ -1,0 +1,57 @@
+{
+  "name": "dsh-workspace-cleanup",
+  "version": "0.6.0",
+  "description": "清理工作区的会话与文件：列出所有工作区（含未分组、B 站），默认收纳、点方框展开；会话显示工作区里的名字，可勾选后一键清理选中会话；也可清理全部未分组或仅 B 站会话；复用 dsh-session-purge 的删除逻辑 · List every workspace, fold by default, show each session by its workspace name, tick sessions to clean them, or clean all ungrouped / B 站 sessions, reusing dsh-session-purge.",
+  "license": "MIT",
+  "author": "dsh-workspace-cleanup contributors",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "verify": "node verify/verify-host.mjs && node verify/verify-client.mjs"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "verify",
+    "README.md",
+    "README.en.md",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "plugin",
+    "workspace",
+    "ungrouped",
+    "cleanup",
+    "purge",
+    "bilibili"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.0-rc.2": "compatible"
+      }
+    }
+  }
+}

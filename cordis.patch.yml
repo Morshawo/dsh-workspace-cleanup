@@ -1,0 +1,8 @@
+# dsh-workspace-cleanup bundle layer: mounted by the plugin manager (or a
+# profile link), so a profile gets the row without hand-editing its patch file.
+#
+# The row id is the Loader entry id. This plugin declares no Host `Config`
+# schema, so the id is just an entry name.
+- insert:
+    - id: workspace-cleanup
+      name: dsh-workspace-cleanup
