@@ -1,6 +1,6 @@
 # dsh-workspace-cleanup
 
-**在 DeepSeek Harness 的「设置」里加一页「清理工作区」：列出所有工作区（含未分组、B 站）的会话，可一键清掉某个工作区的全部会话，也可清理全部未分组或仅 B 站会话。删除复用 `dsh-session-purge`。**
+**在 DeepSeek Harness 的「设置」里加一页「清理工作区」：列出所有工作区（含未分组、来自 逛b站插件 dsh-bili-scroll）的会话，可一键清掉某个工作区的全部会话，也可清理全部未分组或仅 B 站会话。删除复用 `dsh-session-purge`。**
 
 [English](README.en.md) | 简体中文
 
@@ -12,9 +12,9 @@
 
 ## 它解决什么问题
 
-DSH 的会话持久化层**没有删除接口**：`@deepseek-ai/dsh-session-persistence` 明确写着 *"No deletion or retention API"*。侧栏「⋯」里的「删除对话…」（来自 `dsh-session-purge`）能删**一个**会话，但没人批量维护：
+DSH 的会话持久化层**没有删除接口**：`@deepseek-ai/dsh-session-persistence` 明确写着 *"No deletion or retention API"*。侧栏「⋯」里的「删除对话…」（来自 `dsh-session-purge`）能删**一个**会话，但无法批量删除：
 
-- **刷B站插件**每跑一轮就 spawn 一个 headless 会话，`cwd` 是 `<DSH_HOME>/bili-duty`，没有对应工作区 → 落在「未分组」；
+- **刷B站插件dsh-bili-scroll**每跑一轮就 spawn 一个 headless 会话，`cwd` 是 `<DSH_HOME>/bili-duty`，没有对应工作区 → 落在「未分组」；
 - 一些会话的 `cwd` 后来变了、或压根没记录 `cwd`，也会掉进「未分组」；
 - 已分组工作区里的会话同样越堆越多，日志文件一直堆在 `<DSH_HOME>/sessions/<项目>/<会话id>/` 里。
 
