@@ -10,7 +10,7 @@
 
 这是基于会话删除插件 dsh-session-purge 开发的工作区会话批量删除的插件，**使用前需安装 dsh-session-purge 插件**。
 
-链接：https://github.com/hshh603/dsh-session-purge
+**dsh-session-purge 插件**文件已上传**Releases**
 
 ## 它解决什么问题
 
