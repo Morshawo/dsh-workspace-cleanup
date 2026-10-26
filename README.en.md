@@ -13,6 +13,8 @@ Sessions. Deletion reuses `dsh-session-purge`.**
 > only its Sessions; **the Workspace record itself is kept** (it becomes an
 > empty Workspace).
 
+## What you need before use it
+
 This plugin adds bulk workspace session deletion and is built on top of dsh-session-purge, the underlying session-deletion plugin. **You must install dsh-session-purge before using it.**
 
 The **dsh-session-purge** plugin files have been uploaded to **Releases**.
