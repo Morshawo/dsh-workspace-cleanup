@@ -13,6 +13,10 @@ Sessions. Deletion reuses `dsh-session-purge`.**
 > only its Sessions; **the Workspace record itself is kept** (it becomes an
 > empty Workspace).
 
+This plugin adds bulk workspace session deletion and is built on top of dsh-session-purge, the underlying session-deletion plugin. **You must install dsh-session-purge before using it.**
+
+The **dsh-session-purge** plugin files have been uploaded to **Releases**.
+
 ## The problem it solves
 
 DSH's session persistence layer has **no deletion API**: `@deepseek-ai/dsh-session-persistence`
