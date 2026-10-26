@@ -181,7 +181,26 @@ async function main() {
   const calls = []
   const realFetch = globalThis.fetch
   globalThis.fetch = async (url, options) => {
-    calls.push({ url: String(url), body: JSON.parse(String(options.body)) })
+    const body = JSON.parse(String(options.body))
+    calls.push({ url: String(url), body })
+    // purge 0.2.0：文件没删净时会返回 partial/recordKept 并带着错误明细。
+    // STRAY 模拟这一支，其余全成功——转发层必须原样带出，不许盖成「成功」。
+    if (body.sessionId === STRAY) {
+      return {
+        ok: true,
+        status: 200,
+        statusText: 'OK',
+        json: async () => ({
+          ok: true,
+          partial: true,
+          recordKept: true,
+          retryable: true,
+          removed: { directories: [], artifactBytes: 0 },
+          plan: { cwd: '/tmp/stray', refusedCount: 0, warnings: ['1 个文件删除失败，已保留会话记录以便重试。'] },
+          errors: [{ step: 'artifact', path: '/tmp/stray/x.txt', message: 'EPERM: still locked' }],
+        }),
+      }
+    }
     return {
       ok: true,
       status: 200,
@@ -197,6 +216,15 @@ async function main() {
     check('all: never purges a grouped session', !allIds.includes(GROUPED_A) && !allIds.includes(GROUPED_B), JSON.stringify(allIds))
     check('all: purges every ungrouped session', allIds.includes(BILI_1) && allIds.includes(BILI_2) && allIds.includes(STRAY), JSON.stringify(allIds))
     check('all: purge url targets the purge plugin', calls.every((c) => c.url.includes('/plugins/dsh-session-purge/api/purge')), calls[0]?.url)
+    // v0.6.1：转发层必须把 purge 的 partial/recordKept 原样带出并汇总，
+    // 否则界面上「全部成功」会盖住还在磁盘上的产物。
+    equal('all: partial run is counted', all.partialCount, 1)
+    const strayRow = all.results.find((r) => r.sessionId === STRAY)
+    check('all: the partial row keeps ok=true (the purge itself answered)', strayRow?.ok === true)
+    check('all: the partial row is flagged recordKept', strayRow?.recordKept === true)
+    check('all: the partial row carries its error', Array.isArray(strayRow?.errors) && strayRow.errors.length === 1)
+    const cleanRow = all.results.find((r) => r.sessionId === BILI_1)
+    check('all: a fully deleted row is not flagged partial', cleanRow?.recordKept === false && cleanRow?.partial === false)
 
     calls.length = 0
     const bili = await internals.clean(ctx, 'bili', 'artifacts')

@@ -1,13 +1,15 @@
 # dsh-workspace-cleanup
 
-**在 DeepSeek Harness 的「设置」里加一页「清理工作区」：列出所有工作区（含未分组、来自 逛b站插件 dsh-bili-scroll）的会话，可一键清掉某个工作区的全部会话，也可清理全部未分组或仅 B 站会话。删除复用 `dsh-session-purge`。**
+**在 DeepSeek Harness 的「设置」里加一页「清理工作区」：列出所有工作区（含未分组、来自 逛B站插件 dsh-bili-scroll）的会话，可一键清掉某个工作区的全部会话，也可清理全部未分组或仅 B 站会话。删除复用 `dsh-session-purge`。**
 
 [English](README.en.md) | 简体中文
 
 > ⚠️ 删除不可撤销。点「确认清理」前会先列出这次会删哪些会话，勾选「我已知晓：删除后无法恢复」后才能动手。清理某个工作区只会删掉它的会话，**工作区本身保留**（清空后仍是一个空工作区）。
 
 ## 使用它你还需要什么
-这是基于会话删除插件dsh-session-purge开发的工作区会话批量删除的插件，使用前需安装dsh-session-purge插件
+
+这是基于会话删除插件 dsh-session-purge 开发的工作区会话批量删除的插件，**使用前需安装 dsh-session-purge 插件**。
+
 链接：https://github.com/hshh603/dsh-session-purge
 
 ## 它解决什么问题

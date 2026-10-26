@@ -1,6 +1,6 @@
 {
   "name": "dsh-workspace-cleanup",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "清理工作区的会话与文件：列出所有工作区（含未分组、B 站），默认收纳、点方框展开；会话显示工作区里的名字，可勾选后一键清理选中会话；也可清理全部未分组或仅 B 站会话；复用 dsh-session-purge 的删除逻辑 · List every workspace, fold by default, show each session by its workspace name, tick sessions to clean them, or clean all ungrouped / B 站 sessions, reusing dsh-session-purge.",
   "license": "MIT",
   "author": "dsh-workspace-cleanup contributors",

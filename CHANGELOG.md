@@ -5,6 +5,28 @@ All notable changes to `dsh-workspace-cleanup` are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1] - 2026-10-26
+
+### Fixed
+
+- **不再把「部分完成」显示成「清理完成」**：`dsh-session-purge` 0.2.0 起，文件没
+  删净时会保留会话记录并返回 `partial` / `recordKept` / `errors`。本插件原先只转发
+  `removed / plan / errors` 三个字段，把这两个信号吞了——界面上依旧显示全部成功，
+  而产物还留在磁盘上（「会话删了、文件没删」看起来像成功的最后一环）。现在逐行
+  原样转发，并在结果里汇总 `partialCount`。
+- **有未删净的会话时不再自动刷新页面**：那一刷会把仍可重试的会话从视野里抹掉。
+
+### Added
+
+- 结果面板区分三种状态：「清理完成」/ 橙色「部分完成」+「未删净的会话（记录已保留）」
+  明细（每条带 `step: path — 原因`），以及仅在全部删净时才出现的自动刷新提示。
+
+### Tests
+
+- `verify/verify-host.mjs`：purge 桩的一个会话改为返回部分完成，新增 5 项断言
+  （partial 汇总、部分行仍 ok=true 但带 recordKept、错误明细保留、干净行不带
+  partial 标记），94 → 99 项。
+
 ## [0.6.0] - 2026-10-24
 
 ### Changed

@@ -13,10 +13,6 @@ Sessions. Deletion reuses `dsh-session-purge`.**
 > only its Sessions; **the Workspace record itself is kept** (it becomes an
 > empty Workspace).
 
-## What you need before use it
-This is a workspace session batch-deletion plugin developed on top of the dsh-session-purge plugin. You must install the dsh-session-purge plugin before using it.
-Download from:https://github.com/hshh603/dsh-session-purge
-
 ## The problem it solves
 
 DSH's session persistence layer has **no deletion API**: `@deepseek-ai/dsh-session-persistence`
@@ -24,7 +20,7 @@ documents *"No deletion or retention API"*. The sidebar's "⋯ → Delete
 conversation…" (from `dsh-session-purge`) removes **one** Session, but nothing
 batch-maintains the rest:
 
-- the **B 站 scroll plugin dsh-bili-scroll** spawns a headless Session every round with
+- the **B 站 scroll plugin** spawns a headless Session every round with
   `cwd = <DSH_HOME>/bili-duty`, which has no Workspace, so it lands under
   "Ungrouped";
 - Sessions whose `cwd` later changed, or that recorded no `cwd`, fall there too;
